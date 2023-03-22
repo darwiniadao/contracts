@@ -1,0 +1,26 @@
+{
+    "dapptools": {
+        "branch": "master",
+        "description": "Dapp, Seth, Hevm, and more",
+        "homepage": "https://dapp.tools",
+        "owner": "hujw77",
+        "repo": "dapptools",
+        "rev": "d6dffa8d1aea6f46ff749f683b200e01019dce61",
+        "sha256": "12334h3yy4qsb8i72m14wiy133vfraf479jmksq8ff71wmlxrc3b",
+        "type": "tarball",
+        "url": "https://github.com/hujw77/dapptools/archive/d6dffa8d1aea6f46ff749f683b200e01019dce61.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "release-21.05",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5f244caea76105b63d826911b2a1563d33ff1cdc",
+        "sha256": "1xlgynfw9svy7nvh9nkxsxdzncv9hg99gbvbwv3gmrhmzc3sar75",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/5f244caea76105b63d826911b2a1563d33ff1cdc.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
