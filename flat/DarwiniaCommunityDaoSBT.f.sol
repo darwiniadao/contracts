@@ -1,4 +1,4 @@
-// hevm: flattened sources of src/DarwiniaDaoSBT.sol
+// hevm: flattened sources of src/DarwiniaCommunityDaoSBT.sol
 // SPDX-License-Identifier: MIT AND CC0-1.0
 pragma solidity =0.8.17 >=0.8.0 <0.9.0 >=0.8.1 <0.9.0;
 
@@ -1899,7 +1899,7 @@ interface IERC5192 {
   function locked(uint256 tokenId) external view returns (bool);
 }
 
-////// src/DarwiniaDaoSBT.sol
+////// src/DarwiniaCommunityDaoSBT.sol
 /* pragma solidity 0.8.17; */
 
 /* import "@openzeppelin/contracts@4.8.2/token/ERC721/ERC721.sol"; */
@@ -1921,13 +1921,14 @@ interface IERC5192 {
 /// 5. Metadata and image are pinned to ipfs.
 /// 6. Token uri metadata are changeable by contract owner.
 /// @custom:security-contact security@darwinia.network
-contract DarwiniaDaoSBT is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnable, Ownable, IERC4906, IERC5192 {
+contract DarwiniaCommunityDaoSBT is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnable, Ownable, IERC4906, IERC5192 {
     using Counters for Counters.Counter;
 
     error ErrLocked();
 
     Counters.Counter private _tokenIdCounter;
-    string private _base;
+    string private _contractURI;
+    string private _base_uri;
 
     bool private constant LOCKED = true;
 
@@ -1940,13 +1941,13 @@ contract DarwiniaDaoSBT is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Bur
         _;
     }
 
-    constructor(address dao) ERC721("Darwinia DAO Profile", "DDP") {
+    constructor(address dao) ERC721("Darwinia Community DAO Profile", "DCDP") {
         wards[dao] = 1;
         _transferOwnership(dao);
     }
 
-    function setBaseURI(string calldata newBase) external auth {
-        _base = newBase;
+    function setBaseURI(string calldata newBaseURI) external auth {
+        _base_uri = newBaseURI;
         uint256 toTokenId = totalSupply() - 1;
         emit BatchMetadataUpdate(0, toTokenId);
     }
@@ -1959,6 +1960,14 @@ contract DarwiniaDaoSBT is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Bur
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
         emit Locked(tokenId);
+    }
+
+    function contractURI() public view returns (string memory) {
+        return _contractURI;
+    }
+
+    function setContractURI(string calldata newContractURI) external onlyOwner {
+        _contractURI = newContractURI;
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize)
@@ -1989,7 +1998,7 @@ contract DarwiniaDaoSBT is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Bur
     }
 
     function _baseURI() internal view override returns (string memory) {
-        return _base;
+        return _base_uri;
     }
 
     function tokenURI(uint256 tokenId)
@@ -2017,3 +2026,4 @@ contract DarwiniaDaoSBT is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Bur
                super.supportsInterface(interfaceId);
     }
 }
+
