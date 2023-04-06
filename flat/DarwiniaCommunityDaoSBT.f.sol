@@ -2021,8 +2021,7 @@ contract DarwiniaCommunityDaoSBT is ERC721, ERC721Enumerable, ERC721URIStorage, 
         override(ERC721, ERC721Enumerable)
         returns (bool)
     {
-        return interfaceId == type(IERC4906).interfaceId ||
-               interfaceId == type(IERC5192).interfaceId ||
+        return interfaceId == type(IERC5192).interfaceId ||
                super.supportsInterface(interfaceId);
     }
 }
