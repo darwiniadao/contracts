@@ -1,4 +1,4 @@
-## How to Mint SBT by Gnosis Safe
+# How to Mint SBT by Gnosis Safe
 1. After a profile PR merged.
 2. Fetch `tuple(user_address, user_id)` info from [release.md](https://github.com/dcdao/profiles/blob/main/release.md)
 ```
