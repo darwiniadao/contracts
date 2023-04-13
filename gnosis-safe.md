@@ -44,3 +44,5 @@ metadataBaseURI -> newBaseUri
 ![step11](./img/step11.png)
 
 12. Notice and wait for other owner to `Confirm` the multisig transaction, after all required owners confirmed. the transaction will be executed. 
+
+![step12](./img/step12.png)
