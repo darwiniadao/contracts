@@ -7,6 +7,14 @@
 }
 ```
 
+## Darwinia Addresses
+```json
+{
+  "DarwiniaCommunityDaoMultiSig": "0x8683A0ED2bAdb1F3AaBeA6686d78649F0Da774A0",
+  "DarwiniaCommunityDaoSBT": "0x02bE69cF9172a3DcbB334DB9DE41E899F4A8481D"
+}
+```
+
 ## How to Mint SBT
 
 - [Gnosis Safe](./gnosis-safe.md)
