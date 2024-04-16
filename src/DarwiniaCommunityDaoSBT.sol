@@ -9,6 +9,7 @@ import "@openzeppelin/contracts@4.9.6/token/ERC721/extensions/ERC721Votes.sol";
 import "@openzeppelin/contracts@4.9.6/access/Ownable2Step.sol";
 import "@openzeppelin/contracts@4.9.6/utils/cryptography/EIP712.sol";
 import "@openzeppelin/contracts@4.9.6/utils/Counters.sol";
+import "@openzeppelin/contracts@4.9.6/governance/utils/IVotes.sol";
 import "./IERC4906.sol";
 import "./IERC5192.sol";
 
@@ -139,6 +140,6 @@ contract DarwiniaCommunityDaoSBT is
     }
 
     function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721Enumerable) returns (bool) {
-        return interfaceId == type(IERC5192).interfaceId || super.supportsInterface(interfaceId);
+        return interfaceId == type(IERC5192).interfaceId || interfaceId == type(IVotes).interfaceId || super.supportsInterface(interfaceId);
     }
 }
