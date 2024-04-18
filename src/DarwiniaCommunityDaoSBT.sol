@@ -56,7 +56,7 @@ contract DarwiniaCommunityDaoSBT is
     }
 
     modifier auth() {
-        require(wards[_msgSender()] == 1, "DDP/not-authorized");
+        require(wards[_msgSender()] == 1, "gDCDP/not-authorized");
         _;
     }
 
@@ -106,6 +106,14 @@ contract DarwiniaCommunityDaoSBT is
         super._afterTokenTransfer(from, to, firstTokenId, batchSize);
     }
 
+    function clock() public view override returns (uint48) {
+        return uint48(block.timestamp);
+    }
+
+    function CLOCK_MODE() public pure override returns (string memory) {
+        return "mode=timestamp";
+    }
+
     // Only contract owner could transfer/burn SBT
     function _isApprovedOrOwner(address spender, uint256) internal view override returns (bool) {
         if (spender != owner()) revert ErrLocked();
@@ -140,6 +148,7 @@ contract DarwiniaCommunityDaoSBT is
     }
 
     function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721Enumerable) returns (bool) {
-        return interfaceId == type(IERC5192).interfaceId || interfaceId == type(IVotes).interfaceId || super.supportsInterface(interfaceId);
+        return interfaceId == type(IERC5192).interfaceId || interfaceId == type(IVotes).interfaceId
+            || super.supportsInterface(interfaceId);
     }
 }
