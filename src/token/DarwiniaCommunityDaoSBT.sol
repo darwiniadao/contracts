@@ -10,7 +10,6 @@ import "@openzeppelin/contracts@4.9.6/access/Ownable2Step.sol";
 import "@openzeppelin/contracts@4.9.6/utils/cryptography/EIP712.sol";
 import "@openzeppelin/contracts@4.9.6/utils/Counters.sol";
 import "@openzeppelin/contracts@4.9.6/governance/utils/IVotes.sol";
-import "./IERC4906.sol";
 import "./IERC5192.sol";
 
 /// @dev Implementation of https://eips.ethereum.org/EIPS/eip-5192[ERC5192] Minimal Soulbound NFTs
@@ -31,7 +30,6 @@ contract DarwiniaCommunityDaoSBT is
     Ownable2Step,
     EIP712,
     ERC721Votes,
-    IERC4906,
     IERC5192
 {
     using Counters for Counters.Counter;
@@ -147,7 +145,12 @@ contract DarwiniaCommunityDaoSBT is
         return LOCKED;
     }
 
-    function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721Enumerable) returns (bool) {
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable, ERC721URIStorage)
+        returns (bool)
+    {
         return interfaceId == type(IERC5192).interfaceId || interfaceId == type(IVotes).interfaceId
             || super.supportsInterface(interfaceId);
     }
