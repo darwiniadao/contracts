@@ -104,14 +104,6 @@ contract DarwiniaCommunityDaoSBT is
         super._afterTokenTransfer(from, to, firstTokenId, batchSize);
     }
 
-    function clock() public view override returns (uint48) {
-        return uint48(block.timestamp);
-    }
-
-    function CLOCK_MODE() public pure override returns (string memory) {
-        return "mode=timestamp";
-    }
-
     // Only contract owner could transfer/burn SBT
     function _isApprovedOrOwner(address spender, uint256) internal view override returns (bool) {
         if (spender != owner()) revert ErrLocked();
@@ -143,6 +135,14 @@ contract DarwiniaCommunityDaoSBT is
     function locked(uint256 tokenId) external view returns (bool) {
         _requireMinted(tokenId);
         return LOCKED;
+    }
+
+    function clock() public view override returns (uint48) {
+        return uint48(block.timestamp);
+    }
+
+    function CLOCK_MODE() public pure override returns (string memory) {
+        return "mode=timestamp";
     }
 
     function supportsInterface(bytes4 interfaceId)

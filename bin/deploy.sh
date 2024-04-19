@@ -13,8 +13,7 @@ nonce=$(seth nonce $deployer)
 nonce=$(( nonce + 2))
 dcdao=$(dapp address $deployer $nonce)
 
-token=$(dapp create MyToken $deployer)
-# token=$(dapp create DarwiniaCommunityDaoSBT $deployer)
+token=$(dapp create DarwiniaCommunityDaoSBT $deployer)
 timelock=$(dapp create TimelockController $minDelay [$dcdao] [$az] $multisig)
 dapp create DCDAO $token $timelock
 echo "token: $token"
