@@ -18,8 +18,7 @@ contract DCDAO is
 {
     constructor(IVotes _token, TimelockController _timelock)
         Governor("DCDAO")
-        GovernorSettings(14, /* 0.001 day */ 150, /* 0.02 day */ 1)
-        // GovernorSettings(1 days, 1 weeks, 1)
+        GovernorSettings(14400, /* 1 day */ 100800, /* 1 week */ 1)
         GovernorVotes(_token)
         GovernorVotesQuorumFraction(30)
         GovernorTimelockControl(_timelock)
