@@ -137,6 +137,14 @@ contract DarwiniaCommunityDaoSBT is
         return LOCKED;
     }
 
+    function clock() public view override returns (uint48) {
+        return uint48(block.timestamp);
+    }
+
+    function CLOCK_MODE() public pure override returns (string memory) {
+        return "mode=timestamp";
+    }
+
     function supportsInterface(bytes4 interfaceId)
         public
         view
