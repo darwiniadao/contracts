@@ -58,10 +58,7 @@ contract DarwiniaCommunityDaoSBT is
         _;
     }
 
-    constructor(address dao)
-        ERC721("DCDAO Membership Profile", "gDCDMP")
-        EIP712("DCDAO Membership Profile", "1")
-    {
+    constructor(address dao) ERC721("DCDAO Membership Profile", "gDCDMP") EIP712("DCDAO Membership Profile", "1") {
         wards[dao] = 1;
         _transferOwnership(dao);
     }

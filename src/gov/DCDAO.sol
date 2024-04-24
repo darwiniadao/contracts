@@ -5,22 +5,22 @@ import "@openzeppelin/contracts@4.9.6/governance/Governor.sol";
 import "@openzeppelin/contracts@4.9.6/governance/extensions/GovernorSettings.sol";
 import "@openzeppelin/contracts@4.9.6/governance/extensions/GovernorCountingSimple.sol";
 import "@openzeppelin/contracts@4.9.6/governance/extensions/GovernorVotes.sol";
-import "@openzeppelin/contracts@4.9.6/governance/extensions/GovernorVotesQuorumFraction.sol";
 import "@openzeppelin/contracts@4.9.6/governance/extensions/GovernorTimelockControl.sol";
+import "./GovernorVotesQuorum.sol";
 
 contract DCDAO is
     Governor,
     GovernorSettings,
     GovernorCountingSimple,
     GovernorVotes,
-    GovernorVotesQuorumFraction,
+    GovernorVotesQuorum,
     GovernorTimelockControl
 {
     constructor(IVotes _token, TimelockController _timelock)
         Governor("DCDAO")
         GovernorSettings(0, 1 weeks, 1)
         GovernorVotes(_token)
-        GovernorVotesQuorumFraction(30)
+        GovernorVotesQuorum(4)
         GovernorTimelockControl(_timelock)
     {}
 
