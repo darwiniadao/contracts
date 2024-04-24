@@ -54,13 +54,13 @@ contract DarwiniaCommunityDaoSBT is
     }
 
     modifier auth() {
-        require(wards[_msgSender()] == 1, "gDCDP/not-authorized");
+        require(wards[_msgSender()] == 1, "gDCDMP/not-authorized");
         _;
     }
 
     constructor(address dao)
-        ERC721("Darwinia Community DAO Profile", "gDCDP")
-        EIP712("Darwinia Community DAO Profile", "1")
+        ERC721("DCDAO Membership Profile", "gDCDMP")
+        EIP712("DCDAO Membership Profile", "1")
     {
         wards[dao] = 1;
         _transferOwnership(dao);
